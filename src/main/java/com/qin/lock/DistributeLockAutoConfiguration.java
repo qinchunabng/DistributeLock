@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 /**
  * Created by DELL on 2018/12/21.
@@ -22,6 +23,7 @@ public class DistributeLockAutoConfiguration {
     private DistributeLockProperties distributeLockProperties;
 
     @Bean
+    @Scope("prototype")
     @ConditionalOnMissingBean(ReadWriteLock.class)
     public ReadWriteLock readWriteLock(){
         try {
