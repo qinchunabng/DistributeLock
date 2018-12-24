@@ -1,4 +1,4 @@
-package com.qin.lock;
+package com.qin;
 
 /**
  * 读写锁接口

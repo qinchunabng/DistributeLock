@@ -1,8 +1,8 @@
-package com.qin.lock;
+package com.qin;
 
-import com.qin.lock.entity.DistributeLockProperties;
-import com.qin.lock.entity.LockType;
-import com.qin.lock.zookeeper.ZKReadWriteLock;
+import com.qin.entity.DistributeLockProperties;
+import com.qin.entity.LockType;
+import com.qin.zookeeper.ZKReadWriteLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

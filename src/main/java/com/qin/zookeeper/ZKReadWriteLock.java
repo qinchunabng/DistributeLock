@@ -1,15 +1,14 @@
-package com.qin.lock.zookeeper;
+package com.qin.zookeeper;
 
-import com.qin.lock.DistributeLock;
-import com.qin.lock.ReadWriteLock;
-import com.qin.lock.entity.DistributeLockProperties;
-import com.qin.lock.entity.LockStatus;
+import com.qin.DistributeLock;
+import com.qin.ReadWriteLock;
+import com.qin.entity.DistributeLockProperties;
+import com.qin.entity.LockStatus;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
@@ -93,7 +92,7 @@ public class ZKReadWriteLock implements ReadWriteLock {
     private String createLockNode(String name) throws Exception {
         if (zooKeeper.exists(distributeLockProperties.getLockNodeParentPath(), null) == null) {
             synchronized (ZKReadWriteLock.class) {
-                if (zooKeeper.exists(distributeLockProperties.getLockNodeParentPath(), null) == null)
+                if (zooKeeper.exists(distributeLockProperties.getLockNodeParentPath(), null) == null) {
                     try {
                         zooKeeper.create(distributeLockProperties.getLockNodeParentPath(), "".getBytes(Charset.forName("UTF-8")),
                                 ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
@@ -102,6 +101,7 @@ public class ZKReadWriteLock implements ReadWriteLock {
                             logger.warn("{}创建冲突", distributeLockProperties.getLockNodeParentPath());
                         }
                     }
+                }
             }
         }
         return zooKeeper.create(distributeLockProperties.getLockNodeParentPath() + "/" + name, "".getBytes("UTF-8"),

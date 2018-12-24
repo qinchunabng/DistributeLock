@@ -1,4 +1,4 @@
-package com.qin.lock.entity;
+package com.qin.entity;
 
 /**
  *
